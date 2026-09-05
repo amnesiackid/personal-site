@@ -139,6 +139,18 @@ a:hover {
 }
 .skip-link:focus { left: 1rem; top: 1rem; }
 
+/* Hidden on screen, still announced by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* Small uppercase label in mono — used for the location line and similar. */
 .eyebrow {
   font-family: var(--font-mono);
@@ -318,7 +330,7 @@ a:hover {
 .nav-toggle__bars::before { position: absolute; top: -4px; }
 .nav-toggle__bars::after  { position: absolute; top: 4px; }
 
-@media (max-width: 68rem) {
+@media (max-width: 60rem) {
   .nav-toggle { display: inline-flex; }
 
   .nav {
@@ -348,9 +360,14 @@ a:hover {
 }
 
 /* --- language switcher ---------------------------------------------------
-   Groups the section nav, the language links and the mobile menu button on
-   the right of the header. The language links stay visible at every width;
-   only the section nav collapses behind the button.
+   A dropdown: a control showing the current language, which opens a list of
+   the others. Built on <details>, so it opens, closes and takes keyboard
+   focus with no JavaScript at all — main.js only adds Escape and
+   click-outside as conveniences.
+
+   The options are real <a> links rather than <option> values, which means
+   middle-click and open-in-new-tab work, search engines can follow them, and
+   arrowing through the list does not navigate before you have chosen.
    ---------------------------------------------------------------------- */
 .site-header__end {
   display: flex;
@@ -358,42 +375,78 @@ a:hover {
   gap: 1.5rem;
 }
 
-.lang { flex-shrink: 0; }
-
-.lang__list { display: flex; align-items: baseline; }
-.lang__list li { white-space: nowrap; }
-
-.lang__list li + li::before {
-  content: "·";
-  color: var(--rule-strong);
-  margin: 0 0.5rem;
+.lang {
+  position: relative;
+  flex-shrink: 0;
 }
 
-.lang__list a {
-  border: 0;
+.lang__toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;          /* hides the default disclosure triangle */
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--ink-muted);
-  padding-block: 0.35rem;
-  border-bottom: 1px solid transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.4rem 0.6rem;
+  white-space: nowrap;
 }
-.lang__list a:hover { color: var(--ink-strong); }
-.lang__list a[aria-current="page"] {
-  color: var(--ink-strong);
-  border-bottom-color: var(--accent);
+.lang__toggle::-webkit-details-marker { display: none; }
+.lang__toggle:hover { color: var(--ink-strong); }
+
+/* Chevron. Flips over when the menu is open. */
+.lang__caret {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: -3px 0 0 0.45rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.lang[open] .lang__caret { margin-top: 2px; transform: rotate(-135deg); }
+
+.lang__menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 60;
+  min-width: 10.5rem;
+  padding: 0.25rem 0;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
 }
 
-/* Marks English as the primary version. Shown on all three pages. */
+.lang__menu a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 0;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.875rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.lang__menu a:hover {
+  background: var(--paper-sunk);
+  color: var(--ink-strong);
+}
+.lang__menu a[aria-current="page"] { color: var(--accent); }
+
+/* Marks English as the primary version, in every language's menu. */
 .lang__tag {
   font-family: var(--font-mono);
   font-size: 0.5625rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-left: 0.3rem;
 }
 
-@media (max-width: 68rem) {
+@media (max-width: 60rem) {
   .site-header__end { gap: 1rem; }
 }
 

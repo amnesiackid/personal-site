@@ -107,18 +107,21 @@
         </ul>
       </nav>
 
-      <!-- LANGUAGE SWITCHER — identical on all three pages apart from which
-           link carries aria-current="page". "main" marks English. -->
-      <nav class="lang" aria-label="语言">
-        <ul class="lang__list">
-          <li>
-            <a href="../" hreflang="en" lang="en">EN</a>
-            <span class="lang__tag">main</span>
-          </li>
-          <li><a href="../de/" hreflang="de" lang="de">DE</a></li>
+      <!-- LANGUAGE DROPDOWN
+           A <details> disclosure, so it works without JavaScript.
+           Identical on all three pages except for the button label,
+           the link paths, and which option carries aria-current.
+           The "main" tag marks English as the primary version. -->
+      <details class="lang">
+        <summary class="lang__toggle">
+          <span class="visually-hidden">语言：</span>中文<span class="lang__caret" aria-hidden="true"></span>
+        </summary>
+        <ul class="lang__menu">
+          <li><a href="../" hreflang="en" lang="en">English <span class="lang__tag">main</span></a></li>
+          <li><a href="../de/" hreflang="de" lang="de">Deutsch</a></li>
           <li><a href="./" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">中文</a></li>
         </ul>
-      </nav>
+      </details>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>

@@ -18,8 +18,14 @@ assets/
 ## Languages
 
 English is the primary version. That is stated three ways: the `main` tag beside
-EN in the language switcher, a notice bar at the top of the translated pages, and
-`hreflang="x-default"` pointing at the English page for search engines.
+English in the language dropdown, a notice bar at the top of the translated pages,
+and `hreflang="x-default"` pointing at the English page for search engines.
+
+The dropdown is a `<details>` disclosure holding real `<a>` links, not a
+`<select>`. That means it opens and closes without JavaScript, middle-click and
+open-in-new-tab work, search engines can follow the links, and arrowing through
+the options does not navigate before you have chosen. main.js only adds Escape
+and click-outside.
 
 **The design forks nowhere.** `styles.css` and `main.js` live at the top level and
 the translated pages reference them as `../styles.css` and `../main.js`. Change
@@ -43,9 +49,9 @@ you land on `#projects`.
 
 Copy `de/index.html` to a new folder, then update: `<html lang>`, the `<title>`
 and meta description, the `canonical` and `og:url`, the `aria-current="page"`
-in the language switcher, and the notice bar. Then add one `<link rel="alternate"
+in the language dropdown, and the notice bar. Then add one `<link rel="alternate"
 hreflang="…">` line to **all** the other pages, and one `<li>` to each language
-switcher. Chinese-style scripts also need a `html[lang^="…"]` font block in
+dropdown. Chinese-style scripts also need a `html[lang^="…"]` font block in
 `styles.css` — see the one for `zh`.
 
 ### Keeping translations honest

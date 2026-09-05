@@ -98,7 +98,7 @@
 <header class="site-header">
   <div class="shell site-header__inner">
     <a class="masthead" href="#top">
-      <span class="masthead__name">Zhiyu (Vito) Bao</span>
+      <span class="masthead__name">Zhiyu Bao</span>
       <span class="masthead__role">MSc Computational Linguistics &middot; NLP</span>
     </a>
 
@@ -117,22 +117,21 @@
         </ul>
       </nav>
 
-      <!-- LANGUAGE SWITCHER
-           Identical on all three pages except which link carries
-           aria-current="page". The "main" tag marks English as the primary
-           version. main.js carries the current #section across the switch.
-           Paths are relative, so the site still works if it moves to a
-           custom domain or a different folder. -->
-      <nav class="lang" aria-label="Language">
-        <ul class="lang__list">
-          <li>
-            <a href="./" hreflang="en" lang="en" aria-current="page">EN</a>
-            <span class="lang__tag">main</span>
-          </li>
-          <li><a href="de/" hreflang="de" lang="de">DE</a></li>
+      <!-- LANGUAGE DROPDOWN
+           A <details> disclosure, so it works without JavaScript.
+           Identical on all three pages except for the button label,
+           the link paths, and which option carries aria-current.
+           The "main" tag marks English as the primary version. -->
+      <details class="lang">
+        <summary class="lang__toggle">
+          <span class="visually-hidden">Language:&nbsp;</span>EN<span class="lang__caret" aria-hidden="true"></span>
+        </summary>
+        <ul class="lang__menu">
+          <li><a href="./" hreflang="en" lang="en" aria-current="page">English <span class="lang__tag">main</span></a></li>
+          <li><a href="de/" hreflang="de" lang="de">Deutsch</a></li>
           <li><a href="zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></li>
         </ul>
-      </nav>
+      </details>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle__bars" aria-hidden="true"></span>
@@ -158,7 +157,7 @@
     <div class="hero__text">
       <p class="eyebrow">Stuttgart, Germany</p>
       <h1 id="hero-name" class="hero__name">Zhiyu Bao</h1>
-      <p class="preferred-name">Vito</p>
+      <p class="preferred-name">Preferred name: Vito</p>
       <p class="hero__role">MSc Computational Linguistics &middot; NLP &amp; speech</p>
 
       <div class="prose">

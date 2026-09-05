@@ -1,11 +1,12 @@
 /* ==========================================================================
    Zhiyu Bao — personal site
    --------------------------------------------------------------------------
-   Four small things, no dependencies:
+   Five small things, no dependencies:
      1. the mobile menu button
      2. highlighting the nav link for whichever section you are reading
      3. carrying the current section across a language switch
-     4. keeping the copyright year current
+     4. the language dropdown's Escape and click-outside behaviour
+     5. keeping the copyright year current
 
    The site works perfectly well with JavaScript disabled — every one of these
    is an enhancement, not a requirement.
@@ -16,7 +17,7 @@
 
   /* ------------------------------------------------------------------------
      1. MOBILE MENU
-     The button is hidden by CSS above 68rem, so this only matters on phones
+     The button is hidden by CSS above 60rem, so this only matters on phones
      and small tablets. It opens the panel, and closes again when you pick a
      link, press Escape, or widen the window back to desktop.
      ---------------------------------------------------------------------- */
@@ -43,7 +44,7 @@
       if (event.key === "Escape") setMenu(false);
     });
 
-    window.matchMedia("(min-width: 68.01rem)").addEventListener("change", function (event) {
+    window.matchMedia("(min-width: 60.01rem)").addEventListener("change", function (event) {
       if (event.matches) setMenu(false);
     });
   }
@@ -138,7 +139,30 @@
   );
 
   /* ------------------------------------------------------------------------
-     4. COPYRIGHT YEAR
+     4. LANGUAGE DROPDOWN
+     <details> already handles opening, closing and keyboard focus on its own.
+     These two handlers only add what people expect of a dropdown: Escape
+     closes it, and so does clicking anywhere else on the page.
+     ---------------------------------------------------------------------- */
+  var langMenu = document.querySelector("details.lang");
+
+  if (langMenu) {
+    document.addEventListener("click", function (event) {
+      if (langMenu.open && !langMenu.contains(event.target)) {
+        langMenu.open = false;
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && langMenu.open) {
+        langMenu.open = false;
+        langMenu.querySelector("summary").focus();
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     5. COPYRIGHT YEAR
      Fills in <span data-year> in the footer so it never goes stale.
      ---------------------------------------------------------------------- */
   var yearEl = document.querySelector("[data-year]");
