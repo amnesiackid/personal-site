@@ -1,10 +1,11 @@
 /* ==========================================================================
    Zhiyu Bao — personal site
    --------------------------------------------------------------------------
-   Three small things, no dependencies:
+   Four small things, no dependencies:
      1. the mobile menu button
      2. highlighting the nav link for whichever section you are reading
-     3. keeping the copyright year current
+     3. carrying the current section across a language switch
+     4. keeping the copyright year current
 
    The site works perfectly well with JavaScript disabled — every one of these
    is an enhancement, not a requirement.
@@ -15,7 +16,7 @@
 
   /* ------------------------------------------------------------------------
      1. MOBILE MENU
-     The button is hidden by CSS above 56rem, so this only matters on phones
+     The button is hidden by CSS above 68rem, so this only matters on phones
      and small tablets. It opens the panel, and closes again when you pick a
      link, press Escape, or widen the window back to desktop.
      ---------------------------------------------------------------------- */
@@ -42,7 +43,7 @@
       if (event.key === "Escape") setMenu(false);
     });
 
-    window.matchMedia("(min-width: 56rem)").addEventListener("change", function (event) {
+    window.matchMedia("(min-width: 68.01rem)").addEventListener("change", function (event) {
       if (event.matches) setMenu(false);
     });
   }
@@ -120,7 +121,24 @@
   }
 
   /* ------------------------------------------------------------------------
-     3. COPYRIGHT YEAR
+     3. LANGUAGE SWITCH KEEPS YOUR PLACE
+     The section ids are identical across all three language pages, so if you
+     are reading #projects in English and switch to German, you land on
+     #projects rather than at the top. The base href is captured once, so
+     clicking twice cannot append two hashes.
+     ---------------------------------------------------------------------- */
+  Array.prototype.forEach.call(
+    document.querySelectorAll(".lang a[href]"),
+    function (link) {
+      var base = link.getAttribute("href");
+      link.addEventListener("click", function () {
+        link.setAttribute("href", base + window.location.hash);
+      });
+    }
+  );
+
+  /* ------------------------------------------------------------------------
+     4. COPYRIGHT YEAR
      Fills in <span data-year> in the footer so it never goes stale.
      ---------------------------------------------------------------------- */
   var yearEl = document.querySelector("[data-year]");

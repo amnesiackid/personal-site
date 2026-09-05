@@ -55,6 +55,18 @@
   --section-y:  clamp(3.5rem, 8vw, 6rem);  /* vertical section padding */
 }
 
+/* Chinese page only: swap the three font stacks. Every rule below picks these
+   up automatically. Latin characters still render in Plex and Newsreader,
+   because those families are listed first and only CJK falls through. */
+html[lang^="zh"] {
+  --font-sans:  "IBM Plex Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-serif: "Newsreader", "Songti SC", "Noto Serif SC", SimSun, serif;
+  --font-mono:  "IBM Plex Mono", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", monospace;
+}
+
+/* CJK text needs a little more leading than Latin at the same size. */
+html[lang^="zh"] body { line-height: 1.8; }
+
 
 /* ==========================================================================
    2. BASE & RESET
@@ -232,16 +244,37 @@ a:hover {
   letter-spacing: 0.04em;
   color: var(--ink-muted);
 }
-/* On narrow phones the role line wraps onto two lines and makes the header
-   taller than --header-h, which throws off the anchor offsets. Drop it. */
+/* Everything below keeps the header exactly one line tall on a phone. That
+   matters beyond looks: --header-h is what the anchor offsets and the
+   translation notice are measured against, so a header that grows to two
+   lines makes section headings land underneath it. */
+.masthead__name { white-space: nowrap; }
+
 @media (max-width: 30rem) {
+  /* The role line is the first thing to go. */
   .masthead__role { display: none; }
+
+  .site-header__end { gap: 0.75rem; }
+
+  /* Then the word "Menu". The button keeps its icon, and the label stays in
+     the accessibility tree so screen readers still announce it. */
+  .nav-toggle__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .nav-toggle { padding: 0.5rem 0.6rem; }
 }
 
 .nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.35rem;
+  gap: 1.05rem;
 }
 .nav__list a {
   border: 0;
@@ -285,7 +318,7 @@ a:hover {
 .nav-toggle__bars::before { position: absolute; top: -4px; }
 .nav-toggle__bars::after  { position: absolute; top: 4px; }
 
-@media (max-width: 56rem) {
+@media (max-width: 68rem) {
   .nav-toggle { display: inline-flex; }
 
   .nav {
@@ -314,6 +347,74 @@ a:hover {
   .nav__list a[aria-current="true"] { color: var(--accent); }
 }
 
+/* --- language switcher ---------------------------------------------------
+   Groups the section nav, the language links and the mobile menu button on
+   the right of the header. The language links stay visible at every width;
+   only the section nav collapses behind the button.
+   ---------------------------------------------------------------------- */
+.site-header__end {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.lang { flex-shrink: 0; }
+
+.lang__list { display: flex; align-items: baseline; }
+.lang__list li { white-space: nowrap; }
+
+.lang__list li + li::before {
+  content: "·";
+  color: var(--rule-strong);
+  margin: 0 0.5rem;
+}
+
+.lang__list a {
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  padding-block: 0.35rem;
+  border-bottom: 1px solid transparent;
+}
+.lang__list a:hover { color: var(--ink-strong); }
+.lang__list a[aria-current="page"] {
+  color: var(--ink-strong);
+  border-bottom-color: var(--accent);
+}
+
+/* Marks English as the primary version. Shown on all three pages. */
+.lang__tag {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-left: 0.3rem;
+}
+
+@media (max-width: 68rem) {
+  .site-header__end { gap: 1rem; }
+}
+
+/* --- translation notice --------------------------------------------------
+   Slim bar at the top of the German and Chinese pages saying that English is
+   the primary version. margin-top clears the fixed header; the matching
+   body class trims the hero so the spacing does not double up.
+   ---------------------------------------------------------------------- */
+.lang-notice {
+  margin-top: var(--header-h);
+  background: var(--paper-sunk);
+  border-bottom: 1px solid var(--rule);
+  padding-block: 0.7rem;
+}
+.lang-notice p {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+.has-lang-notice .hero { padding-top: clamp(2.5rem, 7vw, 4.5rem); }
+
 
 /* ==========================================================================
    5. HERO
@@ -331,6 +432,16 @@ a:hover {
   line-height: 1.02;
   letter-spacing: -0.025em;
   margin-bottom: 0.5rem;
+}
+
+/* The preferred-name line directly under the H1. Set quietly so it reads
+   as an aside to the name rather than as a second heading. */
+.preferred-name {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  margin: -0.15rem 0 0.6rem;
 }
 
 .hero__role {

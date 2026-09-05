@@ -27,12 +27,21 @@
 <meta name="description" content="Zhiyu Bao is an MSc Computational Linguistics student at the University of Stuttgart working on transformer fine-tuning, LLM interpretability, and multilingual NLP.">
 <link rel="canonical" href="https://amnesiackid.github.io/personal-site/">
 
+<!-- Language alternates. x-default points at English: it is the primary
+     version and the fallback for any locale not listed here. -->
+<link rel="alternate" hreflang="en" href="https://amnesiackid.github.io/personal-site/">
+<link rel="alternate" hreflang="de" href="https://amnesiackid.github.io/personal-site/de/">
+<link rel="alternate" hreflang="zh-Hans" href="https://amnesiackid.github.io/personal-site/zh/">
+<link rel="alternate" hreflang="x-default" href="https://amnesiackid.github.io/personal-site/">
+
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Zhiyu (Vito) Bao — MSc Computational Linguistics, NLP &amp; Speech">
 <meta property="og:description" content="MSc Computational Linguistics student at the University of Stuttgart. Transformer fine-tuning, LLM interpretability, multilingual NLP.">
 <meta property="og:url" content="https://amnesiackid.github.io/personal-site/">
 <meta property="og:image" content="https://amnesiackid.github.io/personal-site/assets/portrait.jpg">
 <meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- Monogram favicon, inline so there is no extra file to manage. -->
@@ -93,23 +102,44 @@
       <span class="masthead__role">MSc Computational Linguistics &middot; NLP</span>
     </a>
 
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-      <span class="nav-toggle__bars" aria-hidden="true"></span>
-      <span class="nav-toggle__text">Menu</span>
-    </button>
+    <div class="site-header__end">
 
-    <nav id="primary-nav" class="nav" aria-label="Section navigation">
-      <ul class="nav__list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <!-- <li><a href="#publications">Publications</a></li> -->
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+      <nav id="primary-nav" class="nav" aria-label="Section navigation">
+        <ul class="nav__list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <!-- <li><a href="#publications">Publications</a></li> -->
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- LANGUAGE SWITCHER
+           Identical on all three pages except which link carries
+           aria-current="page". The "main" tag marks English as the primary
+           version. main.js carries the current #section across the switch.
+           Paths are relative, so the site still works if it moves to a
+           custom domain or a different folder. -->
+      <nav class="lang" aria-label="Language">
+        <ul class="lang__list">
+          <li>
+            <a href="./" hreflang="en" lang="en" aria-current="page">EN</a>
+            <span class="lang__tag">main</span>
+          </li>
+          <li><a href="de/" hreflang="de" lang="de">DE</a></li>
+          <li><a href="zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="nav-toggle__text">Menu</span>
+      </button>
+
+    </div>
   </div>
 </header>
 
@@ -127,7 +157,8 @@
 
     <div class="hero__text">
       <p class="eyebrow">Stuttgart, Germany</p>
-      <h1 id="hero-name" class="hero__name">Zhiyu (Vito) Bao</h1>
+      <h1 id="hero-name" class="hero__name">Zhiyu Bao</h1>
+      <p class="preferred-name">Vito</p>
       <p class="hero__role">MSc Computational Linguistics &middot; NLP &amp; speech</p>
 
       <div class="prose">
@@ -471,8 +502,8 @@
           <dt>Languages</dt>
           <dd>Chinese (native), English (C1), Italian (C1), German (B2)</dd>
         </div>
-        
-        
+
+      </dl>
     </div>
 
   </div>

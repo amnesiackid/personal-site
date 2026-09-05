@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ==========================================================================
+     DEUTSCHE FASSUNG  /  GERMAN VERSION
+     --------------------------------------------------------------------------
+     This is a translation of ../index.html. English is the primary version.
+
+     HOW TO KEEP THIS IN SYNC
+       - The section ids (#about, #research, …) are IDENTICAL in all three
+         languages. Do not rename them: the nav, the scroll-spy and the
+         language switcher all rely on them matching.
+       - styles.css and main.js are shared — they live one level up and are
+         referenced as ../styles.css and ../main.js. Never copy them in here.
+       - When you change content in ../index.html, change it here too, or the
+         translations drift. The notice bar tells readers English wins.
+
+     WHAT IS DELIBERATELY NOT TRANSLATED
+       Repository names, tech stacks, course titles (Stuttgart teaches them
+       under English names), and the lab name in Experience.
+     ========================================================================== -->
+
+<title>Zhiyu Bao — M.Sc. Computerlinguistik, NLP &amp; Sprachverarbeitung</title>
+<meta name="description" content="Zhiyu Bao ist Masterstudent der Computerlinguistik an der Universität Stuttgart und arbeitet an Transformer-Feinabstimmung, LLM-Interpretierbarkeit und mehrsprachigem NLP.">
+<link rel="canonical" href="https://amnesiackid.github.io/personal-site/de/">
+
+<!-- Language alternates. x-default points at English: it is the primary
+     version and the fallback for any locale not listed here. -->
+<link rel="alternate" hreflang="en" href="https://amnesiackid.github.io/personal-site/">
+<link rel="alternate" hreflang="de" href="https://amnesiackid.github.io/personal-site/de/">
+<link rel="alternate" hreflang="zh-Hans" href="https://amnesiackid.github.io/personal-site/zh/">
+<link rel="alternate" hreflang="x-default" href="https://amnesiackid.github.io/personal-site/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Zhiyu Bao — M.Sc. Computerlinguistik, NLP &amp; Sprachverarbeitung">
+<meta property="og:description" content="Masterstudent der Computerlinguistik an der Universität Stuttgart. Transformer-Feinabstimmung, LLM-Interpretierbarkeit, mehrsprachiges NLP.">
+<meta property="og:url" content="https://amnesiackid.github.io/personal-site/de/">
+<meta property="og:image" content="https://amnesiackid.github.io/personal-site/assets/portrait.jpg">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23faf9f7'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' text-anchor='middle' fill='%239a3f21'%3EZB%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+
+<!-- Shared stylesheet, one level up. -->
+<link rel="stylesheet" href="../styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zhiyu Bao",
+  "jobTitle": "Masterstudent der Computerlinguistik",
+  "email": "mailto:zhiyubao1@gmail.com",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "Universität Stuttgart" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Xi'an International Studies University" },
+    { "@type": "CollegeOrUniversity", "name": "Roma Tre University" }
+  ],
+  "knowsAbout": ["Computerlinguistik", "Maschinelles Lernen", "Digital Humanities"],
+  "url": "https://amnesiackid.github.io/personal-site/de/",
+  "sameAs": [
+    "https://github.com/amnesiackid",
+    "https://www.linkedin.com/in/zhiyu-bao-1386b7378/",
+    "https://huggingface.co/amnesiackid"
+  ]
+}
+</script>
+</head>
+
+<!-- has-lang-notice trims the hero padding, because the notice bar below
+     already accounts for the fixed header. -->
+<body id="top" class="has-lang-notice">
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="masthead" href="#top">
+      <span class="masthead__name">Zhiyu (Vito) Bao</span>
+      <span class="masthead__role">M.Sc. Computerlinguistik &middot; NLP</span>
+    </a>
+
+    <div class="site-header__end">
+
+      <nav id="primary-nav" class="nav" aria-label="Abschnittsnavigation">
+        <ul class="nav__list">
+          <li><a href="#about">Über mich</a></li>
+          <li><a href="#research">Forschung</a></li>
+          <li><a href="#education">Ausbildung</a></li>
+          <li><a href="#experience">Erfahrung</a></li>
+          <li><a href="#projects">Projekte</a></li>
+          <li><a href="#skills">Kenntnisse</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <!-- LANGUAGE SWITCHER — identical on all three pages apart from which
+           link carries aria-current="page". "main" marks English. -->
+      <nav class="lang" aria-label="Sprache">
+        <ul class="lang__list">
+          <li>
+            <a href="../" hreflang="en" lang="en">EN</a>
+            <span class="lang__tag">main</span>
+          </li>
+          <li><a href="./" hreflang="de" lang="de" aria-current="page">DE</a></li>
+          <li><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="nav-toggle__text">Menü</span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- Says plainly that English is the primary version. -->
+<div class="lang-notice">
+  <div class="shell">
+    <p>Dies ist eine Übersetzung. Maßgeblich und am aktuellsten ist die
+    <a href="../" hreflang="en">englische Fassung</a>.</p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- 1. ÜBER MICH -->
+<section id="about" class="hero" aria-labelledby="hero-name">
+  <div class="shell hero__inner">
+
+    <div class="hero__text">
+      <p class="eyebrow">Stuttgart, Deutschland</p>
+      <h1 id="hero-name" class="hero__name">Zhiyu Bao</h1>
+      <p class="preferred-name">Vito</p>
+      <p class="hero__role">M.Sc. Computerlinguistik &middot; NLP &amp; Sprachverarbeitung</p>
+
+      <div class="prose">
+        <p>Ich bin Masterstudent der Computerlinguistik an der Universität
+        Stuttgart. Zurzeit suche ich weitere Möglichkeiten, mein Wissen in der
+        Praxis anzuwenden.</p>
+      </div>
+
+      <ul class="hero__links">
+        <li><a href="mailto:zhiyubao1@gmail.com">zhiyubao1@gmail.com</a></li>
+        <li><a href="https://github.com/amnesiackid" rel="me noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/zhiyu-bao-1386b7378/" rel="me noopener">LinkedIn</a></li>
+        <li><a href="https://huggingface.co/amnesiackid" rel="me noopener">Hugging&nbsp;Face</a></li>
+      </ul>
+    </div>
+
+    <figure class="hero__figure">
+      <img src="../assets/portrait.jpg" width="900" height="1125"
+           alt="Porträtfoto von Zhiyu Bao" decoding="async">
+    </figure>
+
+  </div>
+</section>
+
+<!-- 2. FORSCHUNGSINTERESSEN -->
+<section id="research" class="section" aria-labelledby="research-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="research-heading">Forschungsinteressen</h2>
+    </div>
+
+    <div class="section__body">
+      <ol class="interests">
+        <li>
+          <h3>Maschinelles Lernen</h3>
+        </li>
+        <li>
+          <h3>Verarbeitung natürlicher Sprache</h3>
+        </li>
+        <li>
+          <h3>Digital Humanities</h3>
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3. AUSBILDUNG -->
+<section id="education" class="section" aria-labelledby="education-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="education-heading">Ausbildung</h2>
+    </div>
+
+    <div class="section__body">
+      <ul class="entries">
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Universität Stuttgart</h3>
+            <p class="entry__meta">Okt. 2024 &ndash; heute</p>
+          </div>
+          <p class="entry__sub">M.Sc. Computerlinguistik, Schwerpunkt Deep Learning &middot; Stuttgart, Deutschland</p>
+          <p class="entry__note">Lehrveranstaltungen: Deep Learning, Reinforcement
+          Learning, Machine Perception and Learning, Machine Translation, Text
+          Technology, Foundation Models, LLM Interpretability.</p>
+        </li>
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Xi&rsquo;an International Studies University</h3>
+            <p class="entry__meta">Sep. 2020 &ndash; Juni 2024</p>
+          </div>
+          <p class="entry__sub">B.A. Italianistik &middot; Xi&rsquo;an, China</p>
+        </li>
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Universität Roma Tre</h3>
+            <p class="entry__meta">Okt. 2022 &ndash; Juli 2023</p>
+          </div>
+          <p class="entry__sub">Austauschjahr, Italianistik &middot; Rom, Italien</p>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4. ERFAHRUNG -->
+<section id="experience" class="section" aria-labelledby="experience-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="experience-heading">Erfahrung</h2>
+    </div>
+
+    <div class="section__body">
+      <ul class="entries">
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Forschungspraktikant &middot; Key Laboratory for
+            Artificial Intelligence and Cognitive Neuroscience of Language</h3>
+            <p class="entry__meta">Mai &ndash; Juli 2024</p>
+          </div>
+          <p class="entry__sub">EEG und Psycholinguistik &middot; Xi&rsquo;an, China</p>
+          <ul class="bullets">
+            <li>Mitwirkung an der EEG-Datenerhebung für ein Leseexperiment zur
+            parafovealen Vorschau, einschließlich Anlegen der Elektrodenhaube und
+            Signalaufzeichnung.</li>
+            <li>Entwurf der psycholinguistischen Stimuli: semantisch inkongruente
+            Sätze sowie Bewertungsmaterialien für semantische, phonologische und
+            orthografische Bedingungen.</li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- 5. PROJEKTE -->
+<section id="projects" class="section" aria-labelledby="projects-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="projects-heading">Projekte</h2>
+      <p class="section__note">Code und Demos auf
+        <a href="https://github.com/amnesiackid" rel="noopener">GitHub</a>.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="projects">
+
+        <article class="project">
+          <h3 class="project__title">tide-guardrails &mdash; Sicherheitsschicht für einen Support-Chatbot</h3>
+          <p class="project__desc">Guards für Ein- und Ausgabe eines
+          Kundenservice-Chatbots: Jailbreak-Erkennung, Themenbeschränkung und
+          Schwärzung personenbezogener Daten auf dem Weg hinein; Toxizitäts-,
+          Themen- und PII-Prüfungen mit Re-Ask-Schleife auf dem Weg hinaus. Damit
+          der Unterschied sichtbar wird, habe ich ein abliteriertes Llama 3.2 3B
+          als Basismodell verwendet, das ungeschützt kaum etwas ablehnt. Die
+          kombinierten Guards erreichten 0,90 bei der Eingabe und 0,95 bei der
+          Ausgabe, und alles läuft lokal.</p>
+          <ul class="project__stack">
+            <li>Python</li><li>Guardrails AI</li><li>Ollama</li><li>Llama 3.2</li>
+          </ul>
+          <p class="project__links">
+            <a href="https://github.com/amnesiackid/tide-guardrails" rel="noopener">GitHub</a>
+          </p>
+        </article>
+
+        <article class="project">
+          <h3 class="project__title">Sprachemotionserkennung mit DistilHuBERT</h3>
+          <p class="project__desc">DistilHuBERT feinabgestimmt, um Emotionen
+          direkt aus rohem Audio zu klassifizieren, mit 86,8 % Testgenauigkeit.
+          Die gesamte Pipeline aufgebaut: von der Zeit-Frequenz-Merkmalsextraktion
+          über Training und Evaluation bis zur interaktiven Demo.</p>
+          <ul class="project__stack">
+            <li>Python</li><li>PyTorch</li><li>Hugging Face</li><li>Librosa</li>
+          </ul>
+          <p class="project__links">
+            <a href="https://huggingface.co/spaces/amnesiackid/audio-emotion-recognition" rel="noopener">Live-Demo</a>
+            <a href="https://github.com/amnesiackid/automatic-speech-emotion-recognition-on-ravdess" rel="noopener">GitHub</a>
+          </p>
+        </article>
+
+        <article class="project">
+          <h3 class="project__title">TextPulse &mdash; mehrsprachige Feedback-API</h3>
+          <p class="project__desc">Eine containerisierte REST-API, die
+          unstrukturiertes, mehrsprachiges Kundenfeedback in strukturierte Signale
+          überführt, mit Endpunkten für Einzel- und Batch-Analyse,
+          Themenaggregation und Verlauf. Eine Übung darin, eine bestehende
+          Codebasis reproduzierbar zu erweitern.</p>
+          <ul class="project__stack">
+            <li>FastAPI</li><li>spaCy</li><li>PostgreSQL</li><li>Docker</li>
+          </ul>
+          <p class="project__links">
+            <a href="https://github.com/amnesiackid/TextPulse-Multilingual-Customer-Feedback-API" rel="noopener">GitHub</a>
+            <span class="project__status">In Arbeit</span>
+          </p>
+        </article>
+
+        <article class="project">
+          <h3 class="project__title">TimeGPT vs. LSTM für Zeitreihenprognose</h3>
+          <p class="project__desc">TimeGPT, ein Foundation Model für Zeitreihen,
+          feinabgestimmt und eine eigene LSTM-Baseline in PyTorch geschrieben, um
+          beide auf denselben Testdaten zu vergleichen. Die LSTM-Baseline
+          erreichte 5,63 % nMSE; Vorverarbeitung, Training, Evaluation und
+          Fehleranalyse habe ich durchgehend selbst umgesetzt.</p>
+          <ul class="project__stack">
+            <li>Python</li><li>PyTorch</li><li>TimesFM</li><li>pandas</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 6. KENNTNISSE -->
+<section id="skills" class="section" aria-labelledby="skills-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="skills-heading">Kenntnisse</h2>
+    </div>
+
+    <div class="section__body">
+      <dl class="skills">
+
+        <div class="skills__group">
+          <dt>Programmierung</dt>
+          <dd>Python, SQL</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>ML &amp; Deep Learning</dt>
+          <dd>PyTorch, Hugging Face Transformers, TensorFlow, scikit-learn,
+          Transformer-Feinabstimmung, Zeitreihenmodellierung (TimesFM, LSTM)</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>Signale &amp; Daten</dt>
+          <dd>Librosa, pandas, NumPy, Matplotlib, Jupyter</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>Engineering</dt>
+          <dd>Git und GitHub, Docker, FastAPI, PostgreSQL, uv, spaCy,
+          KI-gestützte Entwicklung</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>LLM</dt>
+          <dd>AI Guardrails, Ollama</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>Sprachen</dt>
+          <dd>Chinesisch (Muttersprache), Englisch (C1), Italienisch (C1), Deutsch (B2)</dd>
+        </div>
+
+      </dl>
+    </div>
+
+  </div>
+</section>
+
+<!-- 7. KONTAKT -->
+<section id="contact" class="section section--last" aria-labelledby="contact-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="contact-heading">Kontakt</h2>
+    </div>
+
+    <div class="section__body">
+      <p class="contact__email">
+        <a href="mailto:zhiyubao1@gmail.com">zhiyubao1@gmail.com</a>
+      </p>
+
+      <p class="prose">Für Werkstudenten- und Praktikumsstellen im Bereich NLP
+      oder verwandten Feldern, für Forschungsprojekte und anderes: Schreiben Sie
+      mir gerne!</p>
+
+      <ul class="contact__links">
+        <li>
+          <span class="contact__label">GitHub</span>
+          <a href="https://github.com/amnesiackid" rel="me noopener">github.com/amnesiackid</a>
+        </li>
+        <li>
+          <span class="contact__label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/zhiyu-bao-1386b7378/" rel="me noopener">linkedin.com/in/zhiyu-bao-1386b7378</a>
+        </li>
+        <li>
+          <span class="contact__label">Hugging Face</span>
+          <a href="https://huggingface.co/amnesiackid" rel="me noopener">huggingface.co/amnesiackid</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p>&copy; <span data-year>2026</span> Zhiyu Bao</p>
+    <p>Zuletzt aktualisiert am 05.09.2026 &middot; <a href="#top">Nach oben</a></p>
+  </div>
+</footer>
+
+<!-- Shared script, one level up. -->
+<script src="../main.js"></script>
+</body>
+</html>
