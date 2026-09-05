@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ==========================================================================
+     QUICK EDIT MAP  —  where to change things
+     --------------------------------------------------------------------------
+     Colours & fonts ............ styles.css, the :root block at the very top
+     Name / title / nav ......... "SITE HEADER" section below
+     Intro paragraphs ........... "ABOUT / HERO" section below
+     Everything else ............ each <section> is preceded by an EDIT comment
+     Photo ...................... assets/portrait.jpg (4:5 portrait, ~900x1125)
+     CV ......................... by email, not a file; see the CV section
+     Publications ............... currently commented out — search "PUBLICATIONS"
+     Site URL for SEO ........... update if the site moves off GitHub Pages
+     ========================================================================== -->
+
+<!-- ==========================================================================
+     SEO & SOCIAL SHARING
+     EDIT: title and description. Update the URLs below if the site moves.
+     og:image should ideally be a 1200x630 image; the portrait works as a
+     stopgap. Absolute URLs are required here — relative paths will not work.
+     ========================================================================== -->
+<title>Zhiyu (Vito) Bao — MSc Computational Linguistics, NLP &amp; Speech</title>
+<meta name="description" content="Zhiyu Bao is an MSc Computational Linguistics student at the University of Stuttgart working on transformer fine-tuning, LLM interpretability, and multilingual NLP.">
+<link rel="canonical" href="https://amnesiackid.github.io/personal-site/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Zhiyu (Vito) Bao — MSc Computational Linguistics, NLP &amp; Speech">
+<meta property="og:description" content="MSc Computational Linguistics student at the University of Stuttgart. Transformer fine-tuning, LLM interpretability, multilingual NLP.">
+<meta property="og:url" content="https://amnesiackid.github.io/personal-site/">
+<meta property="og:image" content="https://amnesiackid.github.io/personal-site/assets/portrait.jpg">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Monogram favicon, inline so there is no extra file to manage. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23faf9f7'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' text-anchor='middle' fill='%239a3f21'%3EZB%3C/text%3E%3C/svg%3E">
+
+<!-- Typeface pairing: Newsreader (serif headings) + IBM Plex Sans (body text)
+     + IBM Plex Mono (labels, dates, tech stacks).
+     To change fonts: swap this URL, then edit --font-serif / --font-sans /
+     --font-mono in styles.css. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Structured data: helps search engines read this as a person, not a page. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zhiyu Bao",
+  "alternateName": "Vito Bao",
+  "givenName": "Zhiyu",
+  "familyName": "Bao",
+  "jobTitle": "MSc Computational Linguistics student",
+  "email": "mailto:zhiyubao1@gmail.com",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Stuttgart" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Xi'an International Studies University" },
+    { "@type": "CollegeOrUniversity", "name": "Roma Tre University" }
+  ],
+  "knowsAbout": ["Natural Language Processing", "Speech Processing", "LLM Interpretability", "Multilingual NLP"],
+  "url": "https://amnesiackid.github.io/personal-site/",
+  "sameAs": [
+    "https://github.com/amnesiackid",
+    "https://www.linkedin.com/in/zhiyu-bao-1386b7378/",
+    "https://huggingface.co/amnesiackid"
+  ]
+}
+</script>
+</head>
+
+<body id="top">
+
+<!-- Keyboard users can jump past the nav. Visible only when focused. -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ==========================================================================
+     SITE HEADER / NAV
+     EDIT: the name and role in .masthead, and the nav link labels below.
+     Each href must match the id="" of the matching <section>.
+     The mobile menu button is wired up in main.js.
+     ========================================================================== -->
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="masthead" href="#top">
+      <span class="masthead__name">Zhiyu (Vito) Bao</span>
+      <span class="masthead__role">MSc Computational Linguistics &middot; NLP</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+      <span class="nav-toggle__text">Menu</span>
+    </button>
+
+    <nav id="primary-nav" class="nav" aria-label="Section navigation">
+      <ul class="nav__list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <!-- <li><a href="#publications">Publications</a></li> -->
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ==========================================================================
+     1. ABOUT / HERO
+     EDIT: the display name, the role line, and the two intro paragraphs.
+     Keep the intro to 2-4 sentences: it is the only thing many readers read.
+     The photo is assets/portrait.jpg — swap that file and keep the filename,
+     and the framing stays correct (CSS crops it to 4:5).
+     ========================================================================== -->
+<section id="about" class="hero" aria-labelledby="hero-name">
+  <div class="shell hero__inner">
+
+    <div class="hero__text">
+      <p class="eyebrow">Stuttgart, Germany</p>
+      <h1 id="hero-name" class="hero__name">Zhiyu (Vito) Bao</h1>
+      <p class="hero__role">MSc Computational Linguistics &middot; NLP &amp; speech</p>
+
+      <div class="prose">
+        <p>I&rsquo;m a Master&rsquo;s student in Computational Linguistics at the
+        University of Stuttgart. 
+        Currently I am seeking more opportunities to apply my knowledge in practice.
+        </p>
+      </div>
+
+      <ul class="hero__links">
+        <li><a href="mailto:zhiyubao1@gmail.com">zhiyubao1@gmail.com</a></li>
+        <li><a href="https://github.com/amnesiackid" rel="me noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/zhiyu-bao-1386b7378/" rel="me noopener">LinkedIn</a></li>
+        <li><a href="https://huggingface.co/amnesiackid" rel="me noopener">Hugging&nbsp;Face</a></li>
+      </ul>
+    </div>
+
+    <figure class="hero__figure">
+      <!-- EDIT: alt text should describe the photo for screen-reader users. -->
+      <img src="assets/portrait.jpg" width="900" height="1125"
+           alt="Portrait photograph of Zhiyu Bao" decoding="async">
+    </figure>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     2. RESEARCH INTERESTS
+     EDIT: each <li> is one interest — a short heading plus 1-3 sentences that
+     say what you actually did or want to do. Add or remove <li> items freely;
+     the numbering is automatic (CSS counters), so nothing needs renumbering.
+     ========================================================================== -->
+<section id="research" class="section" aria-labelledby="research-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="research-heading">Research interests</h2>
+    </div>
+
+    <div class="section__body">
+      <ol class="interests">
+        <li>
+          <h3>Machine Learning</h3>
+        </li>
+        <li>
+          <h3>Natural Language Processing</h3>
+        </li>
+        <li>
+          <h3>Digital Humanities</h3>
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     3. EDUCATION
+     EDIT: copy one <li class="entry"> block to add a degree. Each entry is
+     institution + dates on one row, then the degree line, then optional notes.
+     Add a thesis title under "Thesis:" once you have one.
+     ========================================================================== -->
+<section id="education" class="section" aria-labelledby="education-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="education-heading">Education</h2>
+    </div>
+
+    <div class="section__body">
+      <ul class="entries">
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">University of Stuttgart</h3>
+            <p class="entry__meta">Oct 2024 &ndash; present</p>
+          </div>
+          <p class="entry__sub">MSc Computational Linguistics, deep-learning focus &middot; Stuttgart, Germany</p>
+          <p class="entry__note">Coursework: Deep Learning, Reinforcement Learning,
+          Machine Perception and Learning, Machine Translation, Text Technology,
+          Foundation Models, LLM Interpretability.</p>
+          <!-- EDIT: uncomment and fill in once your thesis topic is fixed.
+          <p class="entry__note"><strong>Thesis:</strong> [Working title], supervised by [Supervisor].</p>
+          -->
+        </li>
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Xi&rsquo;an International Studies University</h3>
+            <p class="entry__meta">Sep 2020 &ndash; Jun 2024</p>
+          </div>
+          <p class="entry__sub">BA Italian Studies &middot; Xi&rsquo;an, China</p>
+        </li>
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Roma Tre University</h3>
+            <p class="entry__meta">Oct 2022 &ndash; Jul 2023</p>
+          </div>
+          <p class="entry__sub">Exchange year, Italian Studies &middot; Rome, Italy</p>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     4. EXPERIENCE
+     EDIT: same block structure as Education, plus a bulleted list of what you
+     did. Keep bullets concrete: task, method, outcome. A blank template is
+     commented out at the end of the list.
+     ========================================================================== -->
+<section id="experience" class="section" aria-labelledby="experience-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="experience-heading">Experience</h2>
+    </div>
+
+    <div class="section__body">
+      <ul class="entries">
+
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">Research Intern &middot; Key Laboratory for Artificial
+            Intelligence and Cognitive Neuroscience of Language</h3>
+            <p class="entry__meta">May &ndash; Jul 2024</p>
+          </div>
+          <p class="entry__sub">EEG and psycholinguistics &middot; Xi&rsquo;an, China</p>
+          <ul class="bullets">
+            <li>Assisted with EEG data collection for a parafoveal preview reading
+            experiment, including cap setup and signal acquisition.</li>
+            <li>Designed the psycholinguistic stimuli: semantically violated
+            sentences, and rating materials across semantic, phonological, and
+            orthographic conditions.</li>
+          </ul>
+        </li>
+
+        <!-- EDIT: template for a new role — copy, uncomment, fill in.
+        <li class="entry">
+          <div class="entry__head">
+            <h3 class="entry__title">[Role] &middot; [Organisation]</h3>
+            <p class="entry__meta">[Mon YYYY] &ndash; [Mon YYYY]</p>
+          </div>
+          <p class="entry__sub">[Focus area] &middot; [City, Country]</p>
+          <ul class="bullets">
+            <li>[What you did, with the method and the outcome.]</li>
+          </ul>
+        </li>
+        -->
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     5. PROJECTS
+     EDIT: one <article class="project"> per project. Keep the description to
+     one or two sentences and lead with the result where you have one.
+     .project__stack holds the tech stack, .project__links holds the links.
+     A blank template is commented out at the end of the list.
+     ========================================================================== -->
+<section id="projects" class="section" aria-labelledby="projects-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="projects-heading">Projects</h2>
+      <p class="section__note">Code and demos on
+        <a href="https://github.com/amnesiackid" rel="noopener">GitHub</a>.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="projects">
+
+        <article class="project">
+          <h3 class="project__title">tide-guardrails &mdash; safety layer for a support chatbot</h3>
+          <p class="project__desc">Input and output guards around a
+          customer-service chatbot: jailbreak detection, topic restriction, and
+          PII redaction on the way in; toxicity, topic, and PII checks with a
+          re-ask loop on the way out. To make the before/after legible I used an
+          abliterated Llama 3.2 3B as the base model, which refuses almost
+          nothing unguarded. The compound guards scored 0.90 on input and 0.95 on
+          output, and everything runs locally.</p>
+          <ul class="project__stack">
+            <li>Python</li><li>Guardrails AI</li><li>Ollama</li><li>Llama 3.2</li>
+          </ul>
+          <p class="project__links">
+            <a href="https://github.com/amnesiackid/tide-guardrails" rel="noopener">GitHub</a>
+          </p>
+        </article>
+
+        <article class="project">
+          <h3 class="project__title">Speech emotion recognition with DistilHuBERT</h3>
+          <p class="project__desc">Fine-tuned DistilHuBERT to classify emotion
+          directly from raw audio, reaching 86.8% test accuracy. Built the whole
+          pipeline, from time&ndash;frequency feature extraction through training
+          and evaluation to an interactive demo.</p>
+          <ul class="project__stack">
+            <li>Python</li><li>PyTorch</li><li>Hugging Face</li><li>Librosa</li>
+          </ul>
+          <p class="project__links">
+            <a href="https://huggingface.co/spaces/amnesiackid/audio-emotion-recognition" rel="noopener">Live demo</a>
+            <a href="https://github.com/amnesiackid/automatic-speech-emotion-recognition-on-ravdess" rel="noopener">GitHub</a>
+          </p>
+
+        </article>
+
+        <article class="project">
+          <h3 class="project__title">TextPulse &mdash; multilingual feedback API</h3>
+          <p class="project__desc">A containerised REST API that turns
+          unstructured, multilingual customer feedback into structured signals,
+          with endpoints for single and batch analysis, topic aggregation, and
+          history. An exercise in extending an existing codebase reproducibly.</p>
+          <ul class="project__stack">
+            <li>FastAPI</li><li>spaCy</li><li>PostgreSQL</li><li>Docker</li>
+          </ul>
+          <p class="project__links">
+            <a href="https://github.com/amnesiackid/TextPulse-Multilingual-Customer-Feedback-API" rel="noopener">GitHub</a>
+            <span class="project__status">In progress</span>
+          </p>
+        </article>
+
+        <article class="project">
+          <h3 class="project__title">TimeGPT vs. LSTM for time-series forecasting</h3>
+          <p class="project__desc">Fine-tuned TimeGPT, a time-series foundation
+          model, and wrote a custom LSTM baseline in PyTorch to compare against it
+          on the same held-out data. The LSTM baseline reached 5.63% nMSE; I ran
+          preprocessing, training, evaluation, and error analysis end to end.</p>
+          <ul class="project__stack">
+            <li>Python</li><li>PyTorch</li><li>TimesFM</li><li>pandas</li>
+          </ul>
+          <!-- EDIT: uncomment once the repository is public.
+          <p class="project__links">
+            <a href="[LINK-TO-REPO]" rel="noopener">GitHub</a>
+          </p>
+          -->
+        </article>
+
+        <!-- EDIT: template for a new project — copy, uncomment, fill in.
+        <article class="project">
+          <h3 class="project__title">[Project name]</h3>
+          <p class="project__desc">[One or two sentences. Lead with the result.]</p>
+          <ul class="project__stack">
+            <li>[Tech]</li><li>[Tech]</li>
+          </ul>
+          <p class="project__links">
+            <a href="[LINK]" rel="noopener">GitHub</a>
+          </p>
+        </article>
+        -->
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================================================
+     6. PUBLICATIONS  —  currently hidden
+     You have no publications yet, so this section is commented out rather than
+     left standing empty. To switch it on:
+       1. delete the two comment markers wrapping the <section> below, and
+       2. uncomment the Publications <li> in the nav near the top of this file.
+     The format is citation-style: authors, year, title, venue, then links.
+     ========================================================================== -->
+<!--
+<section id="publications" class="section" aria-labelledby="publications-heading">
+  <div class="shell section__grid">
+    <div class="section__head">
+      <h2 id="publications-heading">Publications</h2>
+    </div>
+    <div class="section__body">
+      <ol class="publications">
+        <li class="publication">
+          <p class="publication__cite">
+            <span class="publication__authors">[Bao, Z.], [Co-author, A.]</span>
+            <span class="publication__year">([Year])</span>.
+            <span class="publication__title">[Title of the paper]</span>.
+            <em class="publication__venue">[Venue or preprint server]</em>.
+          </p>
+          <p class="publication__links">
+            <a href="[ARXIV-LINK]" rel="noopener">arXiv</a>
+            <a href="[PDF-LINK]" rel="noopener">PDF</a>
+            <a href="[CODE-LINK]" rel="noopener">Code</a>
+          </p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ==========================================================================
+     7. SKILLS
+     EDIT: each <div class="skills__group"> is one row — a label and a
+     comma-separated list. Keep the grouping shallow; a long tag cloud reads as
+     padding rather than as signal.
+     ========================================================================== -->
+<section id="skills" class="section" aria-labelledby="skills-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="skills-heading">Skills</h2>
+    </div>
+
+    <div class="section__body">
+      <dl class="skills">
+
+        <div class="skills__group">
+          <dt>Programming</dt>
+          <dd>Python, SQL</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>ML &amp; deep learning</dt>
+          <dd>PyTorch, Hugging Face Transformers, TensorFlow, scikit-learn,
+          transformer fine-tuning, time-series modelling (TimesFM, LSTM)</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>Signal &amp; data</dt>
+          <dd>Librosa, pandas, NumPy, Matplotlib, Jupyter</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>Engineering</dt>
+          <dd>Git and GitHub, Docker, FastAPI, PostgreSQL, uv, spaCy,
+          AI-assisted development</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>LLM</dt>
+          <dd>AI Guardrails, Ollama</dd>
+        </div>
+
+        <div class="skills__group">
+          <dt>Languages</dt>
+          <dd>Chinese (native), English (C1), Italian (C1), German (B2)</dd>
+        </div>
+        
+        
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ==========================================================================
+     8. CONTACT
+     EDIT: the email address (in both the href and the link text), the optional
+     availability line, and the link list. Delete any link you do not use.
+     Google Scholar is commented out until you have something to put there.
+     ========================================================================== -->
+<section id="contact" class="section section--last" aria-labelledby="contact-heading">
+  <div class="shell section__grid">
+
+    <div class="section__head">
+      <h2 id="contact-heading">Contact</h2>
+    </div>
+
+    <div class="section__body">
+      <p class="contact__email">
+        <a href="mailto:zhiyubao1@gmail.com">zhiyubao1@gmail.com</a>
+      </p>
+
+      <!-- EDIT: replace the bracketed text with your actual situation, or
+           delete this paragraph entirely. -->
+      <p class="prose">For working student / internship positions in NLP or related fields,
+        research projects and more, feel free to contact me!</p>
+
+      <ul class="contact__links">
+        <li>
+          <span class="contact__label">GitHub</span>
+          <a href="https://github.com/amnesiackid" rel="me noopener">github.com/amnesiackid</a>
+        </li>
+        <li>
+          <span class="contact__label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/zhiyu-bao-1386b7378/" rel="me noopener">linkedin.com/in/zhiyu-bao-1386b7378</a>
+        </li>
+        <li>
+          <span class="contact__label">Hugging Face</span>
+          <a href="https://huggingface.co/amnesiackid" rel="me noopener">huggingface.co/amnesiackid</a>
+        </li>
+        <!--
+        <li>
+          <span class="contact__label">Google Scholar</span>
+          <a href="[SCHOLAR-LINK]" rel="me noopener">[scholar.google.com/citations?user=...]</a>
+        </li>
+        -->
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ==========================================================================
+     9. FOOTER
+     EDIT: the "last updated" date. The year in the copyright line is filled in
+     by main.js, so it never goes stale.
+     ========================================================================== -->
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p>&copy; <span data-year>2026</span> Zhiyu Bao</p>
+    <p>Last updated 05.09.2026 &middot; <a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

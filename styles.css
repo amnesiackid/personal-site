@@ -1,0 +1,774 @@
+/* ==========================================================================
+   Zhiyu Bao — personal site
+   --------------------------------------------------------------------------
+   Contents
+     1.  Theme variables   <- change colours and fonts here, nothing else
+     2.  Base & reset
+     3.  Layout primitives (.shell, .section)
+     4.  Site header / navigation
+     5.  Hero
+     6.  Research interests
+     7.  Entries (education, experience)
+     8.  Projects
+     9.  Publications (used only if you un-hide that section)
+     10. Skills
+     11. CV & contact
+     12. Footer
+     13. Dark mode
+     14. Reduced motion & print
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. THEME VARIABLES
+   This is the only block you need to touch to re-theme the whole site.
+
+   To change the accent colour: edit --accent (and --accent-ink in the dark
+   mode block near the bottom, section 13).
+   To change fonts: edit --font-serif / --font-sans / --font-mono, and update
+   the Google Fonts <link> in index.html to load the new families.
+   ========================================================================== */
+:root {
+  /* --- colour ------------------------------------------------------------ */
+  --paper:        #faf9f7;   /* page background — warm off-white   */
+  --paper-sunk:   #f3f1ec;   /* very slightly recessed surfaces    */
+  --ink:          #21201d;   /* body text                          */
+  --ink-strong:   #12110f;   /* headings                           */
+  --ink-muted:    #6b6862;   /* dates, captions, secondary text    */
+  --rule:         #e3e0d9;   /* hairlines and card borders         */
+  --rule-strong:  #c8c4ba;   /* link underlines                    */
+  --accent:       #9a3f21;   /* the one accent colour — terracotta */
+
+  /* --- type -------------------------------------------------------------- */
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-base:  1.0625rem;   /* 17px — comfortable for long reading */
+  --measure:    62ch;        /* max line length for prose           */
+
+  /* --- spacing & layout -------------------------------------------------- */
+  --shell-max:  68rem;       /* outer content width                 */
+  --gutter:     clamp(1.25rem, 5vw, 3rem);
+  --rail:       13rem;       /* left column that holds section titles */
+  --header-h:   4.25rem;
+  --section-y:  clamp(3.5rem, 8vw, 6rem);  /* vertical section padding */
+}
+
+
+/* ==========================================================================
+   2. BASE & RESET
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  color: var(--ink-strong);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* Default link: inherits text colour, picks up the accent on hover. This is
+   deliberately quiet so that link-heavy paragraphs stay readable. */
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 120ms ease, border-color 120ms ease;
+}
+a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Visible keyboard focus everywhere. Do not remove — it is the only way
+   keyboard users can see where they are. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link: hidden until focused, then parks itself top-left. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ink);
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+/* Small uppercase label in mono — used for the location line and similar. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 1rem;
+}
+
+/* Constrained line length for running text. */
+.prose { max-width: var(--measure); }
+.prose p + p { margin-top: 1rem; }
+
+
+/* ==========================================================================
+   3. LAYOUT PRIMITIVES
+   .shell        — centres content and holds the page gutters
+   .section      — one page section, separated by a hairline rule
+   .section__grid— section title in a left rail, content on the right (desktop)
+   ========================================================================== */
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--section-y);
+  /* Stops the fixed header from covering headings when you jump to a section. */
+  scroll-margin-top: var(--header-h);
+}
+.section--last { padding-bottom: clamp(4rem, 9vw, 7rem); }
+
+.section__grid { display: grid; gap: 1.75rem; }
+
+.section__head h2 {
+  font-size: 1.3rem;
+  /* A short accent rule above each section title — the one flourish here. */
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.section__note {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  margin-top: 0.75rem;
+  max-width: 18rem;
+}
+
+/* Two-column layout from tablet up: titles in the rail, content beside them. */
+@media (min-width: 62rem) {
+  .section__grid {
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 0 4.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   4. SITE HEADER / NAVIGATION
+   Fixed to the top, solid background (no blur/glass), single hairline below.
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-header__inner {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.masthead {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  padding-block: 0.75rem;
+}
+.masthead:hover { color: inherit; }
+.masthead:hover .masthead__name { color: var(--accent); }
+
+.masthead__name {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink-strong);
+  transition: color 120ms ease;
+}
+.masthead__role {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+/* On narrow phones the role line wraps onto two lines and makes the header
+   taller than --header-h, which throws off the anchor offsets. Drop it. */
+@media (max-width: 30rem) {
+  .masthead__role { display: none; }
+}
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.35rem;
+}
+.nav__list a {
+  border: 0;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  padding-block: 0.35rem;
+  border-bottom: 1px solid transparent;
+}
+.nav__list a:hover { color: var(--ink-strong); }
+
+/* Set by main.js as you scroll — marks the section you are currently in. */
+.nav__list a[aria-current="true"] {
+  color: var(--ink-strong);
+  border-bottom-color: var(--accent);
+}
+
+/* --- mobile menu button (hidden on desktop) ------------------------------ */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 0.45rem 0.7rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-toggle__bars,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after {
+  display: block;
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+.nav-toggle__bars { position: relative; }
+.nav-toggle__bars::before { position: absolute; top: -4px; }
+.nav-toggle__bars::after  { position: absolute; top: 4px; }
+
+@media (max-width: 56rem) {
+  .nav-toggle { display: inline-flex; }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    display: none;
+  }
+  .nav[data-open="true"] { display: block; }
+
+  .nav__list {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem var(--gutter) 1rem;
+  }
+  .nav__list a {
+    display: block;
+    padding-block: 0.6rem;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav__list li:last-child a { border-bottom: 0; }
+  .nav__list a[aria-current="true"] { color: var(--accent); }
+}
+
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero {
+  padding-top: calc(var(--header-h) + clamp(3rem, 9vw, 6.5rem));
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  scroll-margin-top: var(--header-h);
+}
+
+.hero__inner { display: grid; gap: 2.5rem; }
+
+.hero__name {
+  font-size: clamp(2.75rem, 8vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+}
+
+.hero__role {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.hero .prose p { font-size: 1.0625rem; }
+
+/* Inline row of contact links under the intro. */
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 2rem;
+  font-size: 0.9375rem;
+}
+.hero__links a { border-bottom-color: var(--rule); }
+
+/* Photo: cropped to 4:5 by the container, so any portrait-ish image works. */
+.hero__figure { margin: 0; }
+.hero__figure img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 22%;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+/* On phones the photo moves above the name and shrinks to a headshot, rather
+   than sitting full-width underneath the intro where it dominates the screen. */
+@media (max-width: 52rem) {
+  .hero__inner { gap: 1.75rem; }
+  .hero__figure { order: -1; max-width: 8.5rem; }
+}
+
+@media (min-width: 52rem) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) 15.5rem;
+    gap: 4rem;
+    align-items: start;
+  }
+  /* Nudge the photo down so its top edge lines up with the intro text. */
+  .hero__figure { margin-top: 0.5rem; }
+}
+
+
+/* ==========================================================================
+   6. RESEARCH INTERESTS
+   Numbers come from a CSS counter, so adding or removing an <li> renumbers
+   the list automatically.
+   ========================================================================== */
+.interests { counter-reset: interest; }
+
+.interests > li {
+  counter-increment: interest;
+  position: relative;
+  padding-top: 1.75rem;
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  max-width: var(--measure);
+}
+.interests > li:first-child {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.interests h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+/* The index number, set in mono and tucked in front of the heading. */
+.interests h3::before {
+  content: counter(interest, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-right: 0.75rem;
+  vertical-align: 0.2em;
+}
+.interests p { color: var(--ink); }
+
+
+/* ==========================================================================
+   7. ENTRIES — education and experience
+   .entry__head puts the title and the dates on one baseline, dates hard right.
+   ========================================================================== */
+.entry {
+  padding-top: 1.75rem;
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+.entry:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+.entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1.5rem;
+}
+
+.entry__title {
+  font-size: 1.125rem;
+  max-width: 42ch;
+}
+
+.entry__meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.entry__sub {
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  margin: 0.35rem 0 0;
+}
+
+.entry__note {
+  margin-top: 0.75rem;
+  max-width: var(--measure);
+  font-size: 0.9375rem;
+}
+
+/* Bulleted achievements. Custom marker so it stays aligned with the text. */
+.bullets { margin-top: 0.9rem; max-width: var(--measure); }
+.bullets li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+}
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+}
+.bullets li:last-child { margin-bottom: 0; }
+
+
+/* ==========================================================================
+   8. PROJECTS
+   Flat bordered blocks — no shadows, no lift on hover, just a border and a
+   title that pick up the accent.
+   ========================================================================== */
+.projects {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 1.5rem;
+  background: var(--paper);
+  transition: border-color 140ms ease;
+}
+.project:hover { border-color: var(--rule-strong); }
+.project:hover .project__title { color: var(--accent); }
+
+.project__title {
+  font-size: 1.0625rem;
+  margin-bottom: 0.6rem;
+  transition: color 140ms ease;
+}
+
+.project__desc {
+  font-size: 0.9375rem;
+  color: var(--ink);
+  margin-bottom: 1.1rem;
+}
+
+/* Tech stack: mono, separated by middots rather than boxed into pills. */
+.project__stack {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-muted);
+  margin-top: auto;
+  margin-bottom: 0.9rem;
+}
+.project__stack li + li::before {
+  content: "·";
+  margin: 0 0.45rem;
+  color: var(--rule-strong);
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin: 0;
+}
+.project__links a { border-bottom-color: var(--rule-strong); }
+
+.project__status {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.1rem 0.4rem;
+}
+
+
+/* ==========================================================================
+   9. PUBLICATIONS
+   Styles are here and ready; the section itself is commented out in the HTML
+   until there is something to list.
+   ========================================================================== */
+.publications { counter-reset: pub; }
+
+.publication {
+  counter-increment: pub;
+  position: relative;
+  padding-left: 2.25rem;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  max-width: var(--measure);
+}
+.publication:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+.publication::before {
+  content: "[" counter(pub) "]";
+  position: absolute;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  line-height: 1.9;
+}
+
+.publication__cite { font-size: 0.9375rem; margin-bottom: 0.5rem; }
+.publication__title { color: var(--ink-strong); font-weight: 500; }
+.publication__venue { color: var(--ink-muted); }
+
+.publication__links {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   10. SKILLS
+   A definition list: label on the left, comma-separated values on the right.
+   ========================================================================== */
+.skills__group {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.skills__group:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+.skills dt {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-top: 0.3rem;
+}
+
+.skills dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  max-width: 46ch;
+}
+
+@media (min-width: 40rem) {
+  .skills__group {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 0 1.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   11. CV & CONTACT
+   ========================================================================== */
+.button {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  padding: 0.65rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink-strong);
+  background: transparent;
+  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+.button:hover {
+  background: var(--ink-strong);
+  border-color: var(--ink-strong);
+  color: var(--paper);
+}
+
+.cv__note {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+
+.contact__email {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  margin-bottom: 1.25rem;
+}
+.contact__email a { border-bottom-width: 1px; }
+
+.contact__links { margin-top: 1.75rem; }
+.contact__links li {
+  display: grid;
+  gap: 0.1rem;
+  padding-top: 0.7rem;
+  margin-top: 0.7rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9375rem;
+}
+.contact__links li:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+/* justify-self keeps the underline the width of the URL, not of the column.
+   The URLs are shown in full, so let long ones break rather than overflow. */
+.contact__links a {
+  justify-self: start;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 30rem) {
+  .contact__links li {
+    grid-template-columns: 8rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0 1rem;
+  }
+}
+
+/* The platform name, set like the labels in the Skills list. */
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  background: var(--paper-sunk);
+  padding-block: 2rem;
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+.site-footer p { margin: 0; }
+.site-footer a { border-bottom-color: var(--rule-strong); }
+
+
+/* ==========================================================================
+   13. DARK MODE
+   Only the colour variables are redefined — every rule above stays as it is.
+   Delete this whole block if you would rather the site were always light.
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:       #171614;
+    --paper-sunk:  #1d1c19;
+    --ink:         #ddd9d2;
+    --ink-strong:  #f2efe9;
+    --ink-muted:   #a09b92;
+    --rule:        #2f2d29;
+    --rule-strong: #4a4741;
+    --accent:      #e0805a;   /* lighter terracotta, for contrast on dark */
+  }
+  /* Photographs can look harsh against a dark ground; take the edge off. */
+  .hero__figure img { filter: brightness(0.94); }
+}
+
+
+/* ==========================================================================
+   14. REDUCED MOTION & PRINT
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Someone will print this or save it as a PDF. Make that come out cleanly. */
+@media print {
+  .site-header, .nav-toggle, .skip-link, .hero__figure { display: none; }
+  body { background: #fff; color: #000; font-size: 10.5pt; }
+  .hero { padding-top: 0; }
+  .section, .hero { break-inside: avoid; }
+  a { border-bottom: 0; }
+  /* Print the destination of links, since they cannot be clicked on paper. */
+  .hero__links a::after,
+  .contact__links a::after,
+  .project__links a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+  }
+}
